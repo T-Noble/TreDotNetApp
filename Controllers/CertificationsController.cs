@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
+using TreDotNetApp.Models;
+
 
 namespace TreDotNetApp.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 public class CertificationsController
 {
     //private readonly Container _certificationsContainer;

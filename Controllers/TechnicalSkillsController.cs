@@ -1,9 +1,9 @@
+using TreDotNetApp.Models;
+using Microsoft.Azure.Cosmos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TreDotNetApp.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 public class TechnicalSkillsController
 {
     private readonly Container _technicalSkillsContainer;
@@ -15,21 +15,21 @@ public class TechnicalSkillsController
     }
 
     //Adding Technical Skills to Azure Technical Skills container
-    [HttpPost("batch")]
-    public async Task<IActionResult> AddTechnicalSkillsBatch([FromBody] List<TechnicalSkill> skills)
-    {
-        var results = new List<ItemResponse<TechnicalSkill>>();
+    // [HttpPost("batch")]
+    // public async Task<IActionResult> AddTechnicalSkillsBatch(List<TechnicalSkill> skills)
+    // {
+    //     var results = new List<ItemResponse<TechnicalSkill>>();
 
-        foreach (var skill in skills)
-        {
-            // Set unique ID and partition key
-            skill.id = Guid.NewGuid().ToString();
-            var response = await _container.CreateItemAsync(skill, new PartitionKey(skill.id));
-            results.Add(response);
-        }
+    //     foreach (var skill in skills)
+    //     {
+    //         // Set unique ID and partition key
+    //         skill.id = Guid.NewGuid().ToString();
+    //         var response = await _container.CreateItemAsync(skill, new PartitionKey(skill.id));
+    //         results.Add(response);
+    //     }
 
-        return Ok(new { inserted = results.Count });
-    }
+    //     return Ok(new { inserted = results.Count });
+    // }
 
     //Remove Technical Skill entry from Azure Technical Skills container
     // [HttpPost("")]
